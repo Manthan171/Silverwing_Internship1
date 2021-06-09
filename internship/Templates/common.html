@@ -32,7 +32,8 @@
 		<!-- nivo slider CSS
 		============================================ -->
 		<link rel="stylesheet" href="{% static 'css/nivo-slider.css' %}" type="text/css" />
-		<link rel="stylesheet" href="{% static 'css/preview.css' %}" type="text/css" media="screen" />
+
+        <link rel="stylesheet" type="text/css" media="screen" />
 		<!-- owl.carousel css -->
         <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
 		<!-- font-awesome css -->
@@ -66,13 +67,14 @@
 								<ul>
                                     {% if user.is_authenticated %}
                                         <li><a href="my-account.html"><i class="fa fa-user"></i>My account</a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i>My cart</a></li>
+                                     {% comment %} href="{% url 'Home:Products:Cart:add_to_cart' %}" {% endcomment %}
+                                        <li><a ><i class="fa fa-shopping-cart"></i>My cart</a></li>
                                         <li><a href="wishlist.html"><i class="fa fa-heart"></i>My wishlist</a></li>
-                                        <li><a href="#"><i class="fa fa-lock"></i>Log out</a></li>
-                                        <li><a href="#"><i class="fa fa-lock"></i>Change Password</a></li>
+                                        <li><a href="{% url 'account_logout' %}"><i class="fa fa-lock"></i>Log out</a></li>
+                                        <li><a href="{% url 'account_change_password' %}"><i class="fa fa-lock"></i>Change Password</a></li>
                                     {% else %}
-									    <li><a href="#"><i class="fa fa-lock"></i>Login</a></li>
-                                        <li><a href=""><i class="fa fa-lock"></i>Signup</a></li>
+									    <li><a href="{% url 'account_login' %}"><i class="fa fa-lock"></i>Login</a></li>
+                                        <li><a href="{% url 'account_signup' %}"><i class="fa fa-lock"></i>Signup</a></li>
                                     {% endif %}
 								</ul>
 							</div>
@@ -85,7 +87,8 @@
 					<div class="row">
 						<div class="col-sm-2 col-md-2 col-xs-4">
 							<div class="logo">
-								<a href="#" style="font-family: Helvetica, Arial, sans-serif; font-size: 50px; color: navajowhite"  >apparel</a>
+								{% comment %} href="{% url 'Home:Home' %}" {% endcomment %}
+                                <a  style="font-family: Helvetica, Arial, sans-serif; font-size: 50px; color: navajowhite"  >apparel</a>
 							</div>
 						</div>
 						<div class="col-sm-10 col-md-10 col-xs-8 static">
@@ -93,7 +96,8 @@
 							    <div class="mainmenu clearfix hidden-sm hidden-xs">
                                     <nav>
                                         <ul>
-                                            <li><a href="#">Home</a>
+                                        {% comment %} href="{% url 'Home:Home' %}" {% endcomment %}
+                                            <li><a>Home</a>
 
                                             </li>
                                             <li><a href="shop.html">Shop</a>
@@ -146,8 +150,10 @@
                                                     <li><a href="wishlist.html">Wishlist</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="#">About</a></li>
-                                            <li><a href="#">Contact</a></li>
+                                            {% comment %} href="{% url 'Home:about' %}"
+                                            href="{% url 'Home:contact' %}" {% endcomment %}
+                                            <li><a >About</a></li>
+                                            <li><a >Contact</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -156,7 +162,8 @@
                                     <div class="mobile-menu">
                                         <nav id="dropdown">
                                             <ul>
-                                                <li><a href="#">Home</a>
+                                            {% comment %} href="{% url 'Home:Home' %}" {% endcomment %}
+                                                <li><a >Home</a>
                                                     <ul>
                                                         <li><a href="index.html">Home Version One</a></li>
                                                         <li><a href="index-2.html">Home Version Two</a></li>
@@ -339,7 +346,8 @@
                                 <div class="right-header re-right-header">
                                     <ul>
                                         <li class="re-icon tnm"><i class="fa fa-search" aria-hidden="true"></i>
-                                            <form method="get" id="searchform" action="#">
+                                            {% comment %} action="{% url 'Home:Products:search' %}" {% endcomment %}
+                                            <form method="get" id="searchform" >
                                                 <input type="text" value="" name="search" id="ws" placeholder="Search product..." />
                                                 <button type="submit"><i class="pe-7s-search"></i></button>
                                             </form>
